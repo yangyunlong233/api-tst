@@ -1,0 +1,17 @@
+{
+  "name": "api-tst",
+  "version": "1.0.0",
+  "description": "RESTful api 测试",
+  "main": "index.js",
+  "author": "Jason",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "start": "nodemon app/"
+  }
+}
