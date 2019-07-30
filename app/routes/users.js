@@ -14,7 +14,7 @@ router.get('/:id', findById);
 router.post('/', create);
 
 // PUT 修改用戶
-router.put('/:id', update);
+router.patch('/:id', update);
 
 // DELETE 刪除用戶
 router.delete('/:id', del);
