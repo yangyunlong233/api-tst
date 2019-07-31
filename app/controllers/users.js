@@ -31,6 +31,14 @@ class UsersCtl {
         ctx.body = user;
     }
 
+    // 授权中间件
+    async checkOwner(ctx, next) {
+        if (ctx.params.id !== ctx.state.user._id) {
+            ctx.throw(403, '没有权限');
+        }
+        await next();
+    }
+
     // PATCH 修改用戶
     async update(ctx) {
         ctx.verifyParams({
