@@ -1,5 +1,7 @@
 // 內存數據庫
-const User = require('../models/users')
+const jsonwebtoken = require('jsonwebtoken');
+const User = require('../models/users');
+const { secret } = require('../config');
 
 class UsersCtl {
     // GET 查所有用戶
@@ -45,6 +47,19 @@ class UsersCtl {
         const user = await User.findByIdAndRemove(ctx.params.id);
         if(!user) {ctx.throw(404)}
         ctx.status = 204;
+    }
+
+    //  login 登錄
+    async login(ctx) {
+        ctx.verifyParams({
+            name: {type: 'string', required: true},
+            password: {type: 'string', reuired: true},
+        });
+        const user = await User.findOne(ctx.request.body);
+        if (!user) { ctx.throw(401, '用戶名或密碼不正確')}
+        const { _id, name } = user;
+        const token = jsonwebtoken.sign({_id, name}, secret, {expiresIn: '1d'});
+        ctx.body = {token};
     }
 }
 

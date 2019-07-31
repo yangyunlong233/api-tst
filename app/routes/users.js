@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const router = new Router({prefix: '/users'});
-const { find, findById, create, update, del } = require('../controllers/users');
+const { find, findById, create, update, del, login } = require('../controllers/users');
 
 
 
@@ -18,5 +18,8 @@ router.patch('/:id', update);
 
 // DELETE 刪除用戶
 router.delete('/:id', del);
+
+// Login 用戶登錄
+router.post('/login', login)
 
 module.exports = router;
